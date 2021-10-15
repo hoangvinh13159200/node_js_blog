@@ -27,23 +27,30 @@
 					
 					<div class="form-default">
 						<form method="POST" action="/add-order" >
-							
-							
-							
-							
 							<div class="form-group">
 								<label for="shopAddress" class="control-label">Địa chỉ *</label>
 								<input type="text" class="form-control" id="shopAddress" name="address" required>
-							</div>
-							
-							
-							
+							</div>		
 							<div class="form-group">
 								<label for="shopPhone" class="control-label">SĐT</label>
 								<input type="tel" class="form-control" id="shopPhone" name="phone" required	>
 							</div>
-							
-							
+							<div class="form-group">
+								<label for="shopPhone" class="control-label">Chọn phương thức thanh toán</label>
+								<select id="pays" name="pays" class="form-control" onchange="paysChanged(this)"> 
+									// <option value=" ">-- Chọn phương thức thanh toán--</option> 
+									<option value="momo">Momo</option> 
+									<option value="vnpt">VNPT Pay</option>
+									<option value="vt">Viettel Pay</option>
+									<option value="zalo">Zalo Pay</option>   
+									<option value="cod">Thanh toán tiền mặt</option> 
+								 </select>
+							</div>
+							<div class="form-group">
+								<label for="pay" class="control-label">Quét mã để thanh toán:</label>
+								<img id = "hinhanh" src="" style="width:128px;height:128px;" >
+							</div>
+									
 							<div class="row tt-offset-21">
 								<div class="col-auto"> <button type="submit" class="btn">Thanh toán</button> </div>
 								<div class="col-auto align-self-center"> or	<a href="/" class="tt-link">Huỷ</a></div>
@@ -64,7 +71,33 @@
 <% include partials/modal-quickviewmodal %>
 <% include partials/modal-videoproduct %>
 <% include partials/modal-subscribegood %>
-
 <% include partials/script %>
+
+<script language="javascript">
+	// Hàm xử lý khi thẻ select thay đổi giá trị được chọn
+	// obj là tham số truyền vào và cũng chính là thẻ select
+	function paysChanged(obj)
+	{
+		var hinhanh = document.getElementById('hinhanh');
+		var momo = "/images/product/momo2.jpg"
+		var zalo = "/images/product/zalo.jpg"
+		var vt = "/images/product/vtpay.jpg"
+		var value = obj.value;
+		if (value === ''){
+			hinhanh.src = ""
+		}
+		else if (value === 'momo'){
+			hinhanh.src = momo
+		}
+		else if (value === 'zalo'){
+			hinhanh.src = zalo
+		}
+		else if (value === 'vt'){
+			hinhanh.src = vt
+		}
+	}
+
+</script>
+
 </body>
 </html>
